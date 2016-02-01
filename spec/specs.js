@@ -40,7 +40,7 @@ describe('Queue', function() {
     var testQueue = new Queue();
     expect(testQueue.issues).to.eql([]);
   });
-  gi
+  
   it("will store objects created by contructor Issue in the collection,", function(){
         var testIssue = new Issue();
         var testQueue = new Queue();
