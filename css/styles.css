@@ -1,0 +1,12 @@
+.jumbotron {
+  text-align: center;
+  padding: 0px;
+}
+
+#queue-column {
+  border-left: solid black 1px;
+}
+
+.greyed {
+  color: lightgrey;
+}
