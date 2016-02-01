@@ -32,5 +32,18 @@ describe('Issue', function() {
     var testIssue = new Issue("Bobby", "6f", "CSS", "I can't figure out why my loop breaks everything. Help!*^. My <p> is yeah", "snippet");
     testIssue.waiter(testIssue);
     expect(testIssue.waitTime).to.equal(0);
+  });
+});
+
+describe('Queue', function() {
+  it("will have a collection of issues", function() {
+    var testQueue = new Queue();
+    expect(testQueue.issues).to.eql([]);
+  });
+  it("will store objects created by contructor Issue,", function(){
+        var testIssue = new Issue();
+        var testQueue = new Queue();
+        testQueue.addIssue(testIssue);
+        expect(testQueue.issues).to.eql([testIssue]);
   })
 });
