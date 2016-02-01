@@ -3,10 +3,10 @@
   padding: 0px;
 }
 
-#queue-column {
-  border-left: solid black 1px;
+.greyed {
+  color: #ccc;
 }
 
-.greyed {
-  color: lightgrey;
+button {
+  width: 100%;
 }
