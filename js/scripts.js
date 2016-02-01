@@ -30,8 +30,10 @@ Queue.prototype.addIssue = function(issue) {
 }
 
 $(document).ready(function(){
-  $("form#submit-column").submit(function(event) {
+  var newQueue = new Queue();
+  $("form#issue-form").submit(function(event) {
     event.preventDefault();
+
 
     var name = $("input#pair-name").val();
     var location = $("input#location").val();
@@ -39,9 +41,14 @@ $(document).ready(function(){
     var language = $("select#language").val();
     var description = $("textarea#description").val();
     var snippet = $("textarea#snippet").val();
-    var newContact = new Contact(inputtedFirstName, inputtedLastName);
 
-  //  $("ul#contacts").append("<li><span class='contact'>" + newContact.fullName() + "</span></li>");
+    var newIssue = new Issue(name, location, language, description, snippet);
+    newQueue.addIssue(newIssue);
+debugger;
+
+    //
+    // $("ol#queue-output").empty();
+    // $("ol#queue-output").append("<li><span class='name'>" + newQueue[i].name + "</span></li>");
 
   //  $("input#new-first-name").val("");
   //  $("input#new-last-name").val("");
@@ -52,5 +59,5 @@ $(document).ready(function(){
 //       $(".first-name").text(newContact.firstName);
 //       $(".last-name").text(newContact.lastName);
 //     });
-//   });
-// });
+  });
+});
