@@ -36,14 +36,15 @@ describe('Issue', function() {
 });
 
 describe('Queue', function() {
-  it("will have a collection of issues", function() {
+  it("will have a collection to hold issues", function() {
     var testQueue = new Queue();
     expect(testQueue.issues).to.eql([]);
   });
-  it("will store objects created by contructor Issue,", function(){
+  gi
+  it("will store objects created by contructor Issue in the collection,", function(){
         var testIssue = new Issue();
         var testQueue = new Queue();
         testQueue.addIssue(testIssue);
         expect(testQueue.issues).to.eql([testIssue]);
-  })
+  });
 });
