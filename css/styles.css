@@ -6,3 +6,7 @@
 #queue-column {
   border-left: solid black 1px;
 }
+
+.greyed {
+  color: lightgrey;
+}

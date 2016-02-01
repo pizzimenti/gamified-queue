@@ -25,12 +25,34 @@
               <label for="location">Location:</label>
               <input type="text" class="form-control" id="location" placeholder="Example: 6G">
             </div>
-
+            <div class="form-group">
+              <label for="language">Language: <span class="greyed">(optional)</span></label>
+              <select id="language" class="form-control">
+                <option disabled selected>-- Ruby / JavaScript / CSS / etc --</option>
+                <option>Ruby</option>
+                <option>PHP</option>
+                <option>JavaScript</option>
+                <option>HTML</option>
+                <option>CSS</option>
+                <option>C#</option>
+                <option>Java</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="description">Description:</label>
+              <textarea id="description" class="form-control" rows="6" placeholder="Example: jQuery show() function does not unhide our Div that we've hidden in styles.css"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="snippet">Code Snippet: (optional)</label>
+              <textarea id="description" class="form-control" rows="6" placeholder="Example: jQuery show() function does not unhide our Div that we've hidden in styles.css"></textarea>
+            </div>
 
           </form>
         </div>
         <div id="queue-column" class="col-md-8">
           <h2>Active Queue:</h2>
+          <div id="wait-time">
+          </div>
         </div>
       </div>
     </div>
