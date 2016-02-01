@@ -30,7 +30,7 @@ describe('Issue', function() {
 
   it("should update wait time with a dynamic timer", function() {
     var testIssue = new Issue("Bobby", "6f", "CSS", "I can't figure out why my loop breaks everything. Help!*^. My <p> is yeah", "snippet");
-    testIssue.waiter();
-    expect(testIssue.waitTime).to.equal(1);
+    testIssue.waiter(testIssue);
+    expect(testIssue.waitTime).to.equal(0);
   })
 });

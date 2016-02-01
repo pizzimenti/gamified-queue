@@ -7,10 +7,17 @@ function Issue(name, location, language, description, snippet) {
   this.waitTime = 0;
 };
 
-Issue.prototype.waiter = function() {
-  setTimeout(this.timer(), 10000);
-}
+Issue.prototype.waiter = function(obj) {
+  var interval = setInterval(function() {timer()}, 1000);
+  var timer = function() {
+    obj.waitTime+=1;
+    console.log(obj.waitTime);
+    if (obj.waitTime === 5) {
+      stopTimer();
+    }
+  }
+  var stopTimer = function() {
+    clearInterval(interval);
+  }
 
-Issue.prototype.timer = function() {
-  this.waitTime+=1;
-};
+}
