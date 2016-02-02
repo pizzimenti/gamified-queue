@@ -24,9 +24,9 @@ $(document).ready(function(){
 
     var name = $("input#pair-name").val();
     var language = $("select#language").val();
-    var location = $("input#location").val();
-    var description = $("textarea#description").val();
-    var snippet = $("textarea#snippet").val();
+      var location = $("input#location").val();
+      var description = $("textarea#description").val();
+      var snippet = $("textarea#snippet").val();
     var timestamp = new Date();
 
     var newIssue = new Issue(name, location, language, description, snippet, timestamp);
@@ -35,34 +35,34 @@ $(document).ready(function(){
     var waitTime;
 
     $('#queue-output').empty();
-    newQueue.issues.forEach(function(index) {
-      $('#queue-output').append('<tr><td>'+index.name+'</td><td>'+index.language+'</td><td class="waitTime'+newQueue.issues.indexOf(index)+'">0 minutes</td></tr>');
+    newQueue.issues.forEach(function(issue) {
+      $('#queue-output').append('<tr><td>'+issue.name+'</td><td>'+issue.language+'</td><td class="waitTime'+newQueue.issues.indexOf(issue)+'">0 minutes</td></tr>');
     });
 
-    var interval = setInterval(function() { timer() }, 1000);
+    var interval = setInterval(function() { timer() }, 60000);
     function timer() {
-
       currentTime = new Date();
-
-      newQueue.issues.forEach(function(index) {
-
-        waitTime = currentTime - index.timestamp;
+      newQueue.issues.forEach(function(issue) {
+        waitTime = currentTime - issue.timestamp;
         var queueDiv = $('#queue-output');
-        var td = queueDiv.find("td.waitTime"+newQueue.issues.indexOf(index));
+        var td = queueDiv.find("td.waitTime"+newQueue.issues.indexOf(issue));
         td.each(function() {
-          $(this).text(parseInt(waitTime/60000) + " minutes");
-
+          $(this).text(waitTime + " minutes");
         });
       });
-
     }
+  });
+  $('button.refresh').click(function() {
+    var currentTime = new Date();
 
-
-
-    // $("ol#queue-output").empty();
-    // newQueue.issues.forEach(function(index) {
-    //   console.log(index.name);
-    // $("ol#queue-output").append("<li><span class='name'>" + index.name + "</span></li>");
-    // })
+    newQueue.issues.forEach(function(issue) {
+      var index = newQueue.issues.indexOf(issue)
+      var waitTime = (currentTime - issue.timestamp)/60000;
+      if(waitTime > 1) {
+        var longWait = newQueue.issues.splice(index, 1 );
+        newQueue.issues.unshift(longWait);
+        console.log(newQueue.issues);
+      }
+    })
   });
 });

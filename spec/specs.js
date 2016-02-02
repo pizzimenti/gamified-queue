@@ -29,11 +29,6 @@ describe('Issue', function() {
     expect(testIssue.timestamp).to.equal(timestamp);
   });
 
-  // it("should update wait time with a dynamic timer", function() {
-  //   var testIssue = new Issue("Bobby", "6f", "CSS", "I can't figure out why my loop breaks everything. Help!*^. My <p> is yeah", "snippet");
-  //   testIssue.waiter(testIssue);
-  //   expect(testIssue.waitTime).to.equal(0);
-  // });
 });
 
 describe('Queue', function() {
@@ -48,4 +43,5 @@ describe('Queue', function() {
         testQueue.addIssue(testIssue);
         expect(testQueue.issues).to.eql([testIssue]);
   });
+  
 });
