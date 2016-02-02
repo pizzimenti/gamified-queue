@@ -41,19 +41,8 @@ $(document).ready(function(){
 
 
 
-  // $('button.refresh').click(function() {
-  //   var currentTime = new Date();
-  //
-  //   newQueue.issues.forEach(function(issue) {
-  //     var issue = newQueue.issues.indexOf(issue)
-  //     var waitTime = (currentTime - issue.timestamp)/60000;
-  //     if(waitTime > 1) {
-  //       var longWait = newQueue.issues.splice(issue, 1 );
-  //       newQueue.issues.unshift(longWait);
-  //       console.log(newQueue.issues);
-  //     }}}}
-  //   })
 
+    $('#queue-output').empty();
     newQueue.issues.forEach(function(issue) {
       // $('#queue-output').append('<tr><td>'+issue.name+'</td><td>'+issue.language+'</td><td class="waitTime'+newQueue.issues.indexOf(issue)+'">0 minutes</td></tr>');
 
@@ -95,25 +84,32 @@ $(document).ready(function(){
       });
 
 
-      var interval = setInterval(function() { timer() }, 1000);
-      function timer() {
-        currentTime = new Date();
+    var interval = setInterval(function() { timer() }, 1000);
+    function timer() {
+      currentTime = new Date();
 
-        newQueue.issues.forEach(function(issue) {
+      newQueue.issues.forEach(function(issue) {
 
-          waitTime = currentTime - issue.timestamp;
-          var queueDiv = $('#queue-output');
-          var td = queueDiv.find("td.waitTime"+newQueue.issues.indexOf(issue));
-          td.each(function() {
-            $(this).text(waitTime + " minutes");
-          });
+        waitTime = currentTime - issue.timestamp;
+        var queueDiv = $('#queue-output');
+        var td = queueDiv.find("td.waitTime"+newQueue.issues.indexOf(issue));
+        td.each(function() {
+          $(this).text(parseInt(waitTime/60000) + " minutes");
         });
-      }
-
-    // $("ol#queue-output").empty();
-    // newQueue.issues.forEach(function(issue) {
-    //   console.log(issue.name);
-    // $("ol#queue-output").append("<li><span class='name'>" + issue.name + "</span></li>");
-    // })
+      });
+    }
   });
+
+  // $('button.refresh').click(function() {
+  //   var currentTime = new Date();
+  //
+  //   newQueue.issues.forEach(function(issue) {
+  //     var issue = newQueue.issues.indexOf(issue)
+  //     var waitTime = (currentTime - issue.timestamp)/60000;
+  //     if(waitTime > 1) {
+  //       var longWait = newQueue.issues.splice(issue, 1 );
+  //       newQueue.issues.unshift(longWait);
+  //       console.log(newQueue.issues);
+  //     }}}}
+  //   })
 });
