@@ -28,11 +28,11 @@ describe('Issue', function() {
     expect(testIssue.waitTime).to.equal(0);
   });
 
-  it("should update wait time with a dynamic timer", function() {
-    var testIssue = new Issue("Bobby", "6f", "CSS", "I can't figure out why my loop breaks everything. Help!*^. My <p> is yeah", "snippet");
-    testIssue.waiter(testIssue);
-    expect(testIssue.waitTime).to.equal(0);
-  });
+  // it("should update wait time with a dynamic timer", function() {
+  //   var testIssue = new Issue("Bobby", "6f", "CSS", "I can't figure out why my loop breaks everything. Help!*^. My <p> is yeah", "snippet");
+  //   testIssue.waiter(testIssue);
+  //   expect(testIssue.waitTime).to.equal(0);
+  // });
 });
 
 describe('Queue', function() {
@@ -40,7 +40,7 @@ describe('Queue', function() {
     var testQueue = new Queue();
     expect(testQueue.issues).to.eql([]);
   });
-  
+
   it("will store objects created by contructor Issue in the collection,", function(){
         var testIssue = new Issue();
         var testQueue = new Queue();
