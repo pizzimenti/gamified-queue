@@ -27,29 +27,37 @@ $(document).ready(function(){
     var location = $("input#location").val();
     var description = $("textarea#description").val();
     var snippet = $("textarea#snippet").val();
-    var timestamp = Date();
+    var timestamp = new Date();
 
     var newIssue = new Issue(name, location, language, description, snippet, timestamp);
     newQueue.addIssue(newIssue);
+    var currentTime;
+    var waitTime;
 
     $('#queue-output').empty();
     newQueue.issues.forEach(function(index) {
-
-
-      $('#queue-output').append('<tr><td>'+index.name+'</td><td>'+index.language+'</td><td class="waitTime">0 minutes</td></tr>');
-
+      $('#queue-output').append('<tr><td>'+index.name+'</td><td>'+index.language+'</td><td class="waitTime'+newQueue.issues.indexOf(index)+'">0 minutes</td></tr>');
     });
 
-//
-//     var queueDiv = $('#queue-output');
-//     var td = queueDiv.find("td.waitTime");
-//     td.each(function() {
-//     var interval = setInterval(function() { timer() }, 1000);
-//      function timer() {
-// debugger;
-//       // td.last().text(waitTime + " minutes");
-//     }
-  // });
+    var interval = setInterval(function() { timer() }, 1000);
+    function timer() {
+
+      currentTime = new Date();
+
+      newQueue.issues.forEach(function(index) {
+
+        waitTime = currentTime - index.timestamp;
+        var queueDiv = $('#queue-output');
+        var td = queueDiv.find("td.waitTime"+newQueue.issues.indexOf(index));
+        td.each(function() {
+          $(this).text(parseInt(waitTime/60000) + " minutes");
+
+        });
+      });
+
+    }
+
+
 
     // $("ol#queue-output").empty();
     // newQueue.issues.forEach(function(index) {
