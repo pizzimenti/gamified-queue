@@ -27,31 +27,71 @@ $(document).ready(function(){
     var location = $("input#location").val();
     var description = $("textarea#description").val();
     var snippet = $("textarea#snippet").val();
-    var timestamp = Date();
+    var timestamp = new Date();
 
     var newIssue = new Issue(name, location, language, description, snippet, timestamp);
     newQueue.addIssue(newIssue);
+    var currentTime;
+    var waitTime;
 
     $('#queue-output').empty();
     newQueue.issues.forEach(function(index) {
+      // $('#queue-output').append('<tr><td>'+index.name+'</td><td>'+index.language+'</td><td class="waitTime'+newQueue.issues.indexOf(index)+'">0 minutes</td></tr>');
 
 
-      $('#queue-output').append('<tr><td><div data-toggle="modal" data-target="#myModal'+newQueue.issues.indexOf(index) + '">'+index.name+'</div><div class="modal fade" id="myModal'+ newQueue.issues.indexOf(index) +'" role="dialog"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Queue</h4></div><div class="modal-body"><p>'+index.name+'</p><p>'+index.location+'</p><p>'+index.language+'</p><p>'+index.description+'</p><p><xmp>'+index.snippet+'</xmp></p></div></div></div></div></td><td><div data-toggle="modal" data-target="#myModal'+ newQueue.issues.indexOf(index) + '">'+index.language+'</div></td><td class="waitTime"><div data-toggle="modal" data-target="#myModal'+newQueue.issues.indexOf(index) + '">0 minutes</div></td></tr>');
-
-
-
+      $('#queue-output').append('<tr>'+
+                                  '<td>'+
+                                    '<div data-toggle="modal" data-target="#myModal'+newQueue.issues.indexOf(index) + '">'
+                                      +index.name+
+                                    '</div>'+
+                                    '<div class="modal fade" id="myModal'+ newQueue.issues.indexOf(index) +'" role="dialog">'+
+                                      '<div class="modal-dialog modal-lg">'+
+                                        '<div class="modal-content">'+
+                                          '<div class="modal-header">'+
+                                            '<button type="button" class="close" data-dismiss="modal">&times;'+
+                                            '</button>'+
+                                            '<h4 class="modal-title">Queue</h4>'+
+                                          '</div>'+
+                                          '<div class="modal-body">'+
+                                            '<p>'+index.name+'</p>'+
+                                            '<p>'+index.location+'</p>'+
+                                            '<p>'+index.language+'</p>'+
+                                            '<p>'+index.description+'</p>'+
+                                            '<p><xmp>'+index.snippet+'</xmp></p>'+
+                                          '</div>'+
+                                        '</div>'+
+                                      '</div>'+
+                                    '</div>'+
+                                  '</td>'+
+                                  '<td>'+
+                                    '<div data-toggle="modal" data-target="#myModal'+ newQueue.issues.indexOf(index) + '">'
+                                      +index.language+
+                                    '</div>'+
+                                  '</td>'+
+                                  '<td class="waitTime">'+
+                                    '<div data-toggle="modal" data-target="#myModal'+newQueue.issues.indexOf(index) + '">'+
+                                      '0 minutes'+
+                                    '</div>'+
+                                  '</td>'+
+                                '</tr>');
     });
 
-//
-//     var queueDiv = $('#queue-output');
-//     var td = queueDiv.find("td.waitTime");
-//     td.each(function() {
-//     var interval = setInterval(function() { timer() }, 1000);
-//      function timer() {
-// debugger;
-//       // td.last().text(waitTime + " minutes");
-//     }
-  // });
+      var interval = setInterval(function() { timer() }, 1000);
+      function timer() {
+        currentTime = new Date();
+
+        newQueue.issues.forEach(function(index) {
+
+          waitTime = currentTime - index.timestamp;
+          var queueDiv = $('#queue-output');
+          var td = queueDiv.find("td.waitTime"+newQueue.issues.indexOf(index));
+          td.each(function() {
+            $(this).text((waitTime/60000) + " minutes");
+          });
+        });
+      }
+
+
 
     // $("ol#queue-output").empty();
     // newQueue.issues.forEach(function(index) {
