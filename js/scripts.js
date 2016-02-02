@@ -24,16 +24,15 @@ $(document).ready(function(){
 
 
     var name = $("input#pair-name").val();
-    var location = $("input#location").val();
-    var name = $("input#pair-name").val();
     var language = $("select#language").val();
+    var location = $("input#location").val();
     var description = $("textarea#description").val();
     var snippet = $("textarea#snippet").val();
 
     var newIssue = new Issue(name, location, language, description, snippet);
     var waitTime = 0;
-    $('tr.help-data').append('<td>O minutes</td>');
-    var interval = setInterval(function() { timer() }, 60000);
+    $('#queue-output').append('<tr><td>'+name+'</td><td>'+language+'</td><td class="waitTime">0 minutes</td></tr>');
+    var interval = setInterval(function() { timer() }, 10000);
      function timer() {
       waitTime++;
       $('td').last().text(waitTime + " minutes");
