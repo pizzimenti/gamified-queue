@@ -36,7 +36,9 @@ $(document).ready(function(){
     newQueue.issues.forEach(function(index) {
 
 
-      $('#queue-output').append('<tr><td>'+index.name+'</td><td>'+index.language+'</td><td class="waitTime">0 minutes</td></tr>');
+      $('#queue-output').append('<tr><td><div data-toggle="modal" data-target="#myModal'+newQueue.issues.indexOf(index) + '">'+index.name+'</div><div class="modal fade" id="myModal'+ newQueue.issues.indexOf(index) +'" role="dialog"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Queue</h4></div><div class="modal-body"><p>'+index.name+'</p><p>'+index.location+'</p><p>'+index.language+'</p><p>'+index.description+'</p><p><xmp>'+index.snippet+'</xmp></p></div></div></div></div></td><td><div data-toggle="modal" data-target="#myModal'+ newQueue.issues.indexOf(index) + '">'+index.language+'</div></td><td class="waitTime"><div data-toggle="modal" data-target="#myModal'+newQueue.issues.indexOf(index) + '">0 minutes</div></td></tr>');
+
+
 
     });
 
