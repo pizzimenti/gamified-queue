@@ -7,18 +7,19 @@ function Issue(name, location, language, description, snippet) {
   this.waitTime = 0;
 };
 
-Issue.prototype.waiter = function(obj) {
-  var interval = setInterval(function() {timer()}, 1000);
-  var timer = function() {
-    obj.waitTime+=1;
-    if (obj.waitTime === 5) {
-      stopTimer();
-    }
-  }
-  var stopTimer = function() {
-    clearInterval(interval);
-  }
-}
+// Issue.prototype.waiter = function() {
+//   var waitTime = 0;
+//
+//   var timer = function() {
+//     waitTime += 1;
+//   }
+//   this.waitTime = setInterval(function() {
+//     timer()}, 1000);
+//     console.log(this.waitTime);
+//   // var stopTimer = function() {
+//   //   clearInterval(interval);
+//   // }
+//   }
 
 
 function Queue() {
@@ -44,11 +45,14 @@ $(document).ready(function(){
 
     var newIssue = new Issue(name, location, language, description, snippet);
     newQueue.addIssue(newIssue);
-debugger;
 
-    //
-    // $("ol#queue-output").empty();
-    // $("ol#queue-output").append("<li><span class='name'>" + newQueue[i].name + "</span></li>");
+    $("ol#queue-output").empty();
+    newQueue.issues.forEach(function(index) {
+      console.log(index.name);
+    $("ol#queue-output").append("<li><span class='name'>" + index.name + "</span></li>");
+    })
+
+
 
   //  $("input#new-first-name").val("");
   //  $("input#new-last-name").val("");
