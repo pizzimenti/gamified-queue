@@ -1,10 +1,10 @@
-function Issue(name, location, language, description, snippet) {
+function Issue(name, location, language, description, snippet, timestamp) {
   this.name = name;
   this.location = location;
   this.language = language;
   this.description = description;
   this.snippet = snippet;
-  this.waitTime = 0;
+  this.timestamp = timestamp;
 };
 
 function Queue() {
@@ -22,21 +22,34 @@ $(document).ready(function(){
   $("form#issue-form").submit(function(event) {
     event.preventDefault();
 
-
     var name = $("input#pair-name").val();
     var language = $("select#language").val();
     var location = $("input#location").val();
     var description = $("textarea#description").val();
     var snippet = $("textarea#snippet").val();
+    var timestamp = Date();
 
-    var newIssue = new Issue(name, location, language, description, snippet);
-    var waitTime = 0;
-    $('#queue-output').append('<tr><td>'+name+'</td><td>'+language+'</td><td class="waitTime">0 minutes</td></tr>');
-    var interval = setInterval(function() { timer() }, 10000);
-     function timer() {
-      waitTime++;
-      $('td').last().text(waitTime + " minutes");
-    }
+    var newIssue = new Issue(name, location, language, description, snippet, timestamp);
+    newQueue.addIssue(newIssue);
+
+    $('#queue-output').empty();
+    newQueue.issues.forEach(function(index) {
+
+
+      $('#queue-output').append('<tr><td>'+index.name+'</td><td>'+index.language+'</td><td class="waitTime">0 minutes</td></tr>');
+
+    });
+
+//
+//     var queueDiv = $('#queue-output');
+//     var td = queueDiv.find("td.waitTime");
+//     td.each(function() {
+//     var interval = setInterval(function() { timer() }, 1000);
+//      function timer() {
+// debugger;
+//       // td.last().text(waitTime + " minutes");
+//     }
+  // });
 
     // $("ol#queue-output").empty();
     // newQueue.issues.forEach(function(index) {

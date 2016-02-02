@@ -23,9 +23,10 @@ describe('Issue', function() {
   expect(testIssue.snippet).to.equal("functionIssue(name, location, language, description) { this.name=name; this.location = location; this.language = language; this.description = description;};");
   });
 
-  it('should have a property wait time', function() {
-    var testIssue = new Issue("Bobby", "6f", "CSS", "I can't figure out why my loop breaks everything. Help!*^. My <p> is yeah", "snippet")
-    expect(testIssue.waitTime).to.equal(0);
+  it('should have a property of the current date/time', function() {
+    var timestamp = Date();
+    var testIssue = new Issue("Bobby", "6f", "CSS", "I can't figure out why my loop breaks everything. Help!*^. My <p> is yeah", "snippet",timestamp);
+    expect(testIssue.timestamp).to.equal(timestamp);
   });
 
   // it("should update wait time with a dynamic timer", function() {
