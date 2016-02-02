@@ -7,20 +7,6 @@ function Issue(name, location, language, description, snippet) {
   this.waitTime = 0;
 };
 
-Issue.prototype.waiter = function(obj) {
-  var interval = setInterval(function() {timer()}, 1000);
-  var timer = function() {
-    obj.waitTime+=1;
-    if (obj.waitTime === 5) {
-      stopTimer();
-    }
-  }
-  var stopTimer = function() {
-    clearInterval(interval);
-  }
-}
-
-
 function Queue() {
   this.issues = [];
 }
@@ -30,7 +16,7 @@ Queue.prototype.addIssue = function(issue) {
 }
 
 $(document).ready(function(){
-  $("form#submit-column").submit(function(event) {
+  $("form#issue-form").submit(function(event) {
     event.preventDefault();
 
     var name = $("input#pair-name").val();
@@ -39,8 +25,14 @@ $(document).ready(function(){
     var language = $("select#language").val();
     var description = $("textarea#description").val();
     var snippet = $("textarea#snippet").val();
-    var newContact = new Contact(inputtedFirstName, inputtedLastName);
-
+    var newIssue = new Issue(name, location, language, description, snippet);
+    var waitTime = 0;
+    $('tr.help-data').append('<td>O minutes</td>');
+    var interval = setInterval(function() { timer() }, 60000);
+     function timer() {
+      waitTime++;
+      $('td').last().text(waitTime + " minutes");
+    }
   //  $("ul#contacts").append("<li><span class='contact'>" + newContact.fullName() + "</span></li>");
 
   //  $("input#new-first-name").val("");
@@ -52,5 +44,5 @@ $(document).ready(function(){
 //       $(".first-name").text(newContact.firstName);
 //       $(".last-name").text(newContact.lastName);
 //     });
-//   });
-// });
+  });
+});
