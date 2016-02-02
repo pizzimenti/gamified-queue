@@ -58,42 +58,41 @@ $(document).ready(function(){
       // $('#queue-output').append('<tr><td>'+issue.name+'</td><td>'+issue.language+'</td><td class="waitTime'+newQueue.issues.indexOf(issue)+'">0 minutes</td></tr>');
 
 
-      $('#queue-output').append('<tr>'+
-                                  '<td>'+
-                                    '<div data-toggle="modal" data-target="#myModal'+newQueue.issues.indexOf(issue) + '">'
-                                      +issue.name+
-                                    '</div>'+
-                                    '<div class="modal fade" id="myModal'+ newQueue.issues.indexOf(issue) +'" role="dialog">'+
-                                      '<div class="modal-dialog modal-lg">'+
-                                        '<div class="modal-content">'+
-                                          '<div class="modal-header">'+
-                                            '<button type="button" class="close" data-dismiss="modal">&times;'+
-                                            '</button>'+
-                                            '<h4 class="modal-title">Queue</h4>'+
-                                          '</div>'+
-                                          '<div class="modal-body">'+
-                                            '<p>'+issue.name+'</p>'+
-                                            '<p>'+issue.location+'</p>'+
-                                            '<p>'+issue.language+'</p>'+
-                                            '<p>'+issue.description+'</p>'+
-                                            '<p><xmp>'+issue.snippet+'</xmp></p>'+
-                                          '</div>'+
-                                        '</div>'+
-                                      '</div>'+
-                                    '</div>'+
-                                  '</td>'+
-                                  '<td>'+
-                                    '<div data-toggle="modal" data-target="#myModal'+ newQueue.issues.indexOf(issue) + '">'
-                                      +issue.language+
-                                    '</div>'+
-                                  '</td>'+
-                                  '<td class="waitTime">'+
-                                    '<div data-toggle="modal" data-target="#myModal'+newQueue.issues.indexOf(issue) + '">'+
-                                      '0 minutes'+
-                                    '</div>'+
-                                  '</td>'+
-                                '</tr>');
-    });
+      $('#queue-output').append(
+        '<tr>'+
+          '<td>'+
+            '<div data-toggle="modal" data-target="#myModal'+newQueue.issues.indexOf(issue) + '">'
+              +issue.name+
+            '</div>'+
+            '<div class="modal fade" id="myModal'+ newQueue.issues.indexOf(issue) +'" role="dialog">'+
+              '<div class="modal-dialog modal-lg">'+
+                '<div class="modal-content">'+
+                  '<div class="modal-header">'+
+                    '<button type="button" class="close" data-dismiss="modal">&times;'+
+                    '</button>'+
+                    '<h4 class="modal-title">Queue</h4>'+
+                  '</div>'+
+                  '<div class="modal-body">'+
+                    '<p>'+issue.name+'</p>'+
+                    '<p>'+issue.location+'</p>'+
+                    '<p>'+issue.language+'</p>'+
+                    '<p>'+issue.description+'</p>'+
+                    '<p><xmp>'+issue.snippet+'</xmp></p>'+
+                  '</div>'+
+                '</div>'+
+              '</div>'+
+            '</div>'+
+          '</td>'+
+          '<td>'+
+            '<div data-toggle="modal" data-target="#myModal'+ newQueue.issues.indexOf(issue) + '">'
+              +issue.language+
+            '</div>'+
+          '</td>'+
+          '<td data-toggle="modal" data-target="#myModal'+newQueue.issues.indexOf(issue) + '" class="waitTime'+ newQueue.issues.indexOf(issue) +
+              '">0 minutes'+
+          '</td>'+
+        '</tr>');
+      });
 
 
       var interval = setInterval(function() { timer() }, 1000);
