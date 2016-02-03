@@ -57,8 +57,6 @@ $(document).ready(function(){
               '<div class="modal-dialog modal-lg">'+
                 '<div class="modal-content">'+
                   '<div class="modal-header">'+
-                    '<button type="button" class="close" data-dismiss="modal">&times;'+
-                    '</button>'+
                     '<h4 class="modal-title">'+issue.name+'</h4>'+
                   '</div>'+
                   '<div class="modal-body">'+
@@ -66,6 +64,11 @@ $(document).ready(function(){
                     '<p>Language:<span class="modal-data">'+issue.language+'</span></p>'+
                     '<p>Description:<span class="modal-data">'+issue.description+'</span></p>'+
                     '<p>Code Snippet:<span class="modal-data"><xmp>'+issue.snippet+'</xmp></span></p>'+
+                  '</div>'+
+                  '<div class="modal-footer">'+
+                    '<button type="button" class="btn btn-primary close"'+
+                    'data-dismiss="modal">Close</button>'+
+                    '<button type="button" class="btn btn-danger help">I can help!</button>'+
                   '</div>'+
                 '</div>'+
               '</div>'+
