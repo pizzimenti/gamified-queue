@@ -43,5 +43,19 @@ describe('Queue', function() {
         testQueue.addIssue(testIssue);
         expect(testQueue.issues).to.eql([testIssue]);
   });
+
+  it('will rearrange the issues collection by first created issue when necessary', function() {
+    var testIssue = new Issue("name1");
+    var madeAt = new Date();
+    testIssue.timestamp = madeAt/1;
+    var testIssue2 = new Issue("name2");
+    testIssue2.timestamp = (madeAt/1) + 1;
+    var testQueue = new Queue();
+    testQueue.addIssue(testIssue2);
+    testQueue.addIssue(testIssue);
+    expect(testQueue.issues[0].name).to.equal(testIssue2.name);
+    testQueue.refresh();
+    expect(testQueue.issues[0].name).to.equal(testIssue.name);
+  });
   
 });
