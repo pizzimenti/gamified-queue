@@ -18,6 +18,7 @@ Queue.prototype.addIssue = function(issue) {
 $(document).ready(function(){
 
   var newQueue = new Queue();
+  var dbQueue;
 
   $("form#issue-form").submit(function(event) {
     event.preventDefault();
@@ -42,13 +43,24 @@ $(document).ready(function(){
 
     // $('#issue-form')[0].reset();
 
-    $('#queue-output').empty();
+
     newQueue.issues.forEach(function(issue) {
-      // $('#queue-output').append('<tr><td>'+issue.name+'</td><td>'+issue.language+'</td><td class="waitTime'+newQueue.issues.indexOf(issue)+'">0 minutes</td></tr>');
 
       localStorage.setItem('queueStorage' + newQueue.issues.indexOf(issue), JSON.stringify(issue));
-      // newQueue = JSON.parse(localStorage.getItem('queueStorage'));
 
+    });
+
+
+    debugger;
+
+    localStorage.queueStorage.forEach(function(issue) {
+
+      dbQueue = JSON.parse(localStorage.getItem('queueStorage' + newQueue.issues.indexOf(issue)));
+
+
+
+
+      $('#queue-output').empty();
       $('#queue-output').append(
         '<tr>'+
           '<td>'+
