@@ -40,7 +40,7 @@ $(document).ready(function(){
     // });
 
 
-
+    $('#issue-form')[0].reset();
 
     $('#queue-output').empty();
     newQueue.issues.forEach(function(issue) {
