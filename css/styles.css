@@ -10,3 +10,14 @@
 button {
   width: 100%;
 }
+
+.modal-data {
+  font-weight: bold;
+  margin-left: 40px;
+}
+
+xmp {
+  background: black;
+  color: lightgreen;
+  opacity: 0.7;
+}
