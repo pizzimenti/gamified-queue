@@ -40,12 +40,14 @@ $(document).ready(function(){
     // });
 
 
-    $('#issue-form')[0].reset();
+    // $('#issue-form')[0].reset();
 
     $('#queue-output').empty();
     newQueue.issues.forEach(function(issue) {
       // $('#queue-output').append('<tr><td>'+issue.name+'</td><td>'+issue.language+'</td><td class="waitTime'+newQueue.issues.indexOf(issue)+'">0 minutes</td></tr>');
 
+      localStorage.setItem('queueStorage' + newQueue.issues.indexOf(issue), JSON.stringify(issue));
+      // newQueue = JSON.parse(localStorage.getItem('queueStorage'));
 
       $('#queue-output').append(
         '<tr>'+
