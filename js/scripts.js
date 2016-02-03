@@ -76,6 +76,8 @@ $(document).ready(function(){
             '</div>'+
           '</td>'+
           '<td>'+
+var test="";
+
             '<div data-toggle="modal" data-target="#myModal'+newQueue.issues.indexOf(issue) + '">'
               +issue.location+
             '</div>'+
