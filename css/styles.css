@@ -20,6 +20,11 @@ button {
   margin-left: 40px;
 }
 
+.ticketTitle {
+  width: 20%;
+  margin-left: 25%;
+}
+
 xmp {
   background: black;
   color: lightgreen;

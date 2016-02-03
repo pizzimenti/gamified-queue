@@ -57,7 +57,7 @@ $(document).ready(function(){
               '<div class="modal-dialog modal-lg">'+
                 '<div class="modal-content">'+
                   '<div class="modal-header">'+
-                    '<h4 class="modal-title">'+issue.name+'</h4>'+
+                    '<h4 class="modal-title">'+issue.name+'<span class="ticketTitle">Help Ticket Details:</span></h4>'+
                   '</div>'+
                   '<div class="modal-body">'+
                     '<p>Location:<span class="modal-data">'+issue.location+'</span></p>'+
