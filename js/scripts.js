@@ -66,9 +66,9 @@ $(document).ready(function(){
                     '<p>Code Snippet:<span class="modal-data"><xmp>'+issue.snippet+'</xmp></span></p>'+
                   '</div>'+
                   '<div class="modal-footer">'+
-                    '<button type="button" class="btn btn-primary close"'+
+                    '<button type="button" class="btn btn-md btn-primary"'+
                     'data-dismiss="modal">Close</button>'+
-                    '<button type="button" class="btn btn-danger help">I can help!</button>'+
+                    '<button type="button" class="btn btn-md btn-danger help">I can help!</button>'+
                   '</div>'+
                 '</div>'+
               '</div>'+

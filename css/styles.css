@@ -11,6 +11,10 @@ button {
   width: 100%;
 }
 
+.btn-md {
+  width: 150px;
+}
+
 .modal-data {
   font-weight: bold;
   margin-left: 40px;
