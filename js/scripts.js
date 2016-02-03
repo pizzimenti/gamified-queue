@@ -57,12 +57,13 @@ $(document).ready(function(){
               '<div class="modal-dialog modal-lg">'+
                 '<div class="modal-content">'+
                   '<div class="modal-header">'+
-                    '<h4 class="modal-title">'+issue.name+'<span class="ticketTitle">Help Ticket Details:</span></h4>'+
+                  '<h4 class="modal-title">Help Ticket Details:</h4>'+
+                    '<h4 class="modal-title">'+issue.name+'</h4>'+
                   '</div>'+
                   '<div class="modal-body">'+
                     '<p>Location:<span class="modal-data">'+issue.location+'</span></p>'+
                     '<p>Language:<span class="modal-data">'+issue.language+'</span></p>'+
-                    '<p>Description:<span class="modal-data">'+issue.description+'</span></p>'+
+                    '<p>Description:<span class="modal-data" "descption">'+issue.desc+'</span></p>'+
                     '<p>Code Snippet:<span class="modal-data"><xmp>'+issue.snippet+'</xmp></span></p>'+
                   '</div>'+
                   '<div class="modal-footer">'+
@@ -72,6 +73,11 @@ $(document).ready(function(){
                   '</div>'+
                 '</div>'+
               '</div>'+
+            '</div>'+
+          '</td>'+
+          '<td>'+
+            '<div data-toggle="modal" data-target="#myModal'+newQueue.issues.indexOf(issue) + '">'
+              +issue.location+
             '</div>'+
           '</td>'+
           '<td>'+
