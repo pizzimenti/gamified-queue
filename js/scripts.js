@@ -5,22 +5,26 @@ function Issue(name, location, language, description, snippet, timestamp) {
   this.description = description;
   this.snippet = snippet;
   this.timestamp = timestamp;
+  this.resolved = false;
 };
 
 function Queue() {
   this.issues = [];
-}
+};
 
 Queue.prototype.addIssue = function(issue) {
   this.issues.push(issue);
-}
+};
 
 Queue.prototype.refresh = function() {
   this.issues.sort(compareTimestamps);
   function compareTimestamps(a, b) {
     return a.timestamp - b.timestamp;
   }
-}
+};
+
+
+
 
 $(document).ready(function(){
 

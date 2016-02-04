@@ -29,6 +29,11 @@ describe('Issue', function() {
     expect(testIssue.timestamp).to.equal(timestamp);
   });
 
+  it('should have a property of resolved', function() {
+    var testIssue = new Issue();
+    expect(testIssue.resolved).to.equal(false);
+  });
+
 });
 
 describe('Queue', function() {
