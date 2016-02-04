@@ -4,7 +4,7 @@ describe('Issue', function() {
     expect(testIssue.name).to.equal("Bob");
   });
 
-  it("should have a property of loction", function(){
+  it("should have a property of 'location'", function(){
     var testIssue = new Issue("Bobby", "6f");
     expect(testIssue.location).to.equal("6f");
   });
@@ -19,7 +19,7 @@ describe('Issue', function() {
     expect(testIssue.description).to.equal("I can't figure out why my loop breaks everything. Help!*^. My <p> is yeah");
   });
 
-  it('should have a property of a broken code snippet', function() {    var testIssue = new Issue("Bobby", "6f", "CSS", "I can't figure out why my loop breaks everything. Help!*^. My <p> is yeah", "functionIssue(name, location, language, description) { this.name=name; this.location = location; this.language = language; this.description = description;};")
+  it('should have a property of a broken code "snippet"', function() {    var testIssue = new Issue("Bobby", "6f", "CSS", "I can't figure out why my loop breaks everything. Help!*^. My <p> is yeah", "functionIssue(name, location, language, description) { this.name=name; this.location = location; this.language = language; this.description = description;};")
   expect(testIssue.snippet).to.equal("functionIssue(name, location, language, description) { this.name=name; this.location = location; this.language = language; this.description = description;};");
   });
 
