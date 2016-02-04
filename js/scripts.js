@@ -22,7 +22,7 @@ Queue.prototype.refresh = function() {
     return a.timestamp - b.timestamp;
   }
 };
-  
+
 var DrawQueue = function() {
   var dbQueue = [];
   $('#queue-output').empty();
@@ -133,6 +133,7 @@ $(document).ready(function(){
   $('button.purge').click(function() {
     localStorage.clear();
     DrawQueue();
+    location.href="index.html";
   });
 
 });  //end of Document Ready function
