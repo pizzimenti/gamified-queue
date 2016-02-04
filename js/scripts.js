@@ -29,7 +29,7 @@ var DrawQueue = function() {
 
   $('#queue-output').empty();
 
-  for (index=0; index < localStorage.length; index++) {
+  for (var index=0; index < localStorage.length; index++) {
     dbQueue.push(JSON.parse(localStorage.getItem('queueStorage'+index)));
   }
 
@@ -131,6 +131,11 @@ $(document).ready(function(){
 
   $('button.refresh').click(function() {
     newQueue.refresh();
+  });
+
+  $('button.purge').click(function() {
+    localStorage.clear();
+    DrawQueue();
   });
 
 });  //end of Document Ready function
