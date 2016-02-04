@@ -70,10 +70,22 @@ describe('Queue', function() {
   });
 
   it('will have a property that is collection of resolved issues', function() {
-      var testIssue = new Issue();
       var testQueue = new Queue();
-      testQueue.addIssue(testIssue);
       expect(testQueue.resolved).to.eql([]);
-  })
+  });
+
+  it('will move resolved issues to resolved queue collection and remove from queue issues collection', function() {
+    var testIssue = new Issue();
+    var testIssue2 = new Issue();
+    testIssue2.name = "foo";
+    var testIssue3 = new Issue();
+    var testQueue = new Queue();
+    testQueue.addIssue(testIssue);
+    testQueue.addIssue(testIssue2);
+    testQueue.addIssue(testIssue3);
+    testQueue.resolveIssue(testIssue2.name);
+    expect(testQueue.issues).to.eql([testIssue, testIssue3]);
+    expect(testQueue.resolved).to.eql([testIssue2]);
+  });
   
 });
