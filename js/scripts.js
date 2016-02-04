@@ -32,6 +32,10 @@ var DrawQueue = function() {
   }
 
   dbQueue.forEach(function(issue) {
+     dbQueue[dbQueue.indexOf(issue)].timestamp = new Date(dbQueue[dbQueue.indexOf(issue)].timestamp);
+  });
+
+  dbQueue.forEach(function(issue) {
     $('#queue-output').append(
       '<tr>'+
         '<td>'+
@@ -78,7 +82,7 @@ var DrawQueue = function() {
     });
 
 
-  var interval = setInterval(function() { timer() }, 1000);
+  var interval = setInterval(function() { timer() }, 100);
   function timer() {
     currentTime = new Date();
 
