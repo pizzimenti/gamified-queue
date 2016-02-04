@@ -15,13 +15,24 @@ Queue.prototype.addIssue = function(issue) {
   this.issues.push(issue);
 }
 
+
+var DrawQueue = function() {
+
+
+}
+
 $(document).ready(function(){
 
   var newQueue = new Queue();
   var dbQueue = []
 
+  if (localStorage !== null) {
+    DrawQueue();
+  }
+      
   $("form#issue-form").submit(function(event) {
     event.preventDefault();
+
 
     var name = $("input#pair-name").val();
     var language = $("select#language").val();
@@ -34,32 +45,28 @@ $(document).ready(function(){
     newQueue.addIssue(newIssue);
     var currentTime;
     var waitTime;
+    dbQueue = [];
 
-    // $('#queue-output').empty();
-    // newQueue.issues.forEach(function(issue) {
-    //   $('#queue-output').append('<tr><td>'+issue.name+'</td><td>'+issue.language+'</td><td class="waitTime'+newQueue.issues.indexOf(issue)+'">0 minutes</td></tr>');
-    // });
-
-
-    // $('#issue-form')[0].reset();
-
-    $('#queue-output').empty();
     newQueue.issues.forEach(function(issue) {
-      // $('#queue-output').append('<tr><td>'+issue.name+'</td><td>'+issue.language+'</td><td class="waitTime'+newQueue.issues.indexOf(issue)+'">0 minutes</td></tr>');
 
       localStorage.setItem('queueStorage' + newQueue.issues.indexOf(issue), JSON.stringify(issue));
+    });
 
+    for (index=0; index < localStorage.length; index++) {
+      dbQueue.push(JSON.parse(localStorage.getItem('queueStorage'+index)));
+    }
 
-      for (index=0; index < localStorage.length; index++) {
-        dbQueue.push(JSON.parse(localStorage.getItem('queueStorage'+index)));
-      }
+    $('#queue-output').empty();
+
+    dbQueue.forEach(function(issue) {
+
       $('#queue-output').append(
         '<tr>'+
           '<td>'+
-            '<div data-toggle="modal" data-target="#myModal'+newQueue.issues.indexOf(issue) + '">'
+            '<div data-toggle="modal" data-target="#myModal'+dbQueue.indexOf(issue) + '">'
               +issue.name+
             '</div>'+
-            '<div class="modal fade" id="myModal'+ newQueue.issues.indexOf(issue) +'" role="dialog">'+
+            '<div class="modal fade" id="myModal'+ dbQueue.indexOf(issue) +'" role="dialog">'+
               '<div class="modal-dialog modal-lg">'+
                 '<div class="modal-content">'+
                   '<div class="modal-header">'+
@@ -78,11 +85,11 @@ $(document).ready(function(){
             '</div>'+
           '</td>'+
           '<td>'+
-            '<div data-toggle="modal" data-target="#myModal'+ newQueue.issues.indexOf(issue) + '">'
+            '<div data-toggle="modal" data-target="#myModal'+ dbQueue.indexOf(issue) + '">'
               +issue.language+
             '</div>'+
           '</td>'+
-          '<td data-toggle="modal" data-target="#myModal'+newQueue.issues.indexOf(issue) + '" class="waitTime'+ newQueue.issues.indexOf(issue) +
+          '<td data-toggle="modal" data-target="#myModal'+dbQueue.indexOf(issue) + '" class="waitTime'+ dbQueue.indexOf(issue) +
               '">0 minutes'+
           '</td>'+
         '</tr>');
@@ -93,11 +100,11 @@ $(document).ready(function(){
     function timer() {
       currentTime = new Date();
 
-      newQueue.issues.forEach(function(issue) {
+      dbQueue.forEach(function(issue) {
 
         waitTime = currentTime - issue.timestamp;
         var queueDiv = $('#queue-output');
-        var td = queueDiv.find("td.waitTime"+newQueue.issues.indexOf(issue));
+        var td = queueDiv.find("td.waitTime"+dbQueue.indexOf(issue));
         td.each(function() {
           $(this).text(parseInt(waitTime/60000) + " minutes");
         });
@@ -108,13 +115,13 @@ $(document).ready(function(){
   // $('button.refresh').click(function() {
   //   var currentTime = new Date();
   //
-  //   newQueue.issues.forEach(function(issue) {
-  //     var issue = newQueue.issues.indexOf(issue)
+  //   dbQueue.forEach(function(issue) {
+  //     var issue = dbQueue.indexOf(issue)
   //     var waitTime = (currentTime - issue.timestamp)/60000;
   //     if(waitTime > 1) {
-  //       var longWait = newQueue.issues.splice(issue, 1 );
-  //       newQueue.issues.unshift(longWait);
-  //       console.log(newQueue.issues);
+  //       var longWait = dbQueue.splice(issue, 1 );
+  //       dbQueue.unshift(longWait);
+  //       console.log(dbQueue);
   //     }}}}
   //   })
 });
