@@ -130,4 +130,9 @@ $(document).ready(function(){
     newQueue.refresh();
   });
 
+  $('button.purge').click(function() {
+    localStorage.clear();
+    DrawQueue();
+  });
+
 });  //end of Document Ready function
