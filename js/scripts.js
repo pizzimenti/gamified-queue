@@ -14,6 +14,7 @@ Issue.prototype.resolve = function() {
 
 function Queue() {
   this.issues = [];
+  this.resolved = [];
 };
 
 Queue.prototype.addIssue = function(issue) {

@@ -69,11 +69,11 @@ describe('Queue', function() {
     expect(testQueue.issues[0].name).to.equal(testIssue.name);
   });
 
-  // it('will have a property that is collection of resolved issues', function() {
-  //     var testIssue = new Issue();
-  //     var testQueue = new Queue();
-  //     testQueue.addIssue(testIssue);
-  //     testQueue.
-  // })
+  it('will have a property that is collection of resolved issues', function() {
+      var testIssue = new Issue();
+      var testQueue = new Queue();
+      testQueue.addIssue(testIssue);
+      expect(testQueue.resolved).to.eql([]);
+  })
   
 });
