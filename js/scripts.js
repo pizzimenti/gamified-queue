@@ -5,15 +5,26 @@ function Issue(name, location, language, description, snippet, timestamp) {
   this.description = description;
   this.snippet = snippet;
   this.timestamp = timestamp;
+  this.resolved = false;
 };
 
 function Queue() {
   this.issues = [];
-}
+};
 
 Queue.prototype.addIssue = function(issue) {
   this.issues.push(issue);
-}
+};
+
+Queue.prototype.refresh = function() {
+  this.issues.sort(compareTimestamps);
+  function compareTimestamps(a, b) {
+    return a.timestamp - b.timestamp;
+  }
+};
+
+
+
 
 $(document).ready(function(){
 
@@ -110,16 +121,8 @@ var test="";
     }
   });
 
-  // $('button.refresh').click(function() {
-  //   var currentTime = new Date();
-  //
-  //   newQueue.issues.forEach(function(issue) {
-  //     var issue = newQueue.issues.indexOf(issue)
-  //     var waitTime = (currentTime - issue.timestamp)/60000;
-  //     if(waitTime > 1) {
-  //       var longWait = newQueue.issues.splice(issue, 1 );
-  //       newQueue.issues.unshift(longWait);
-  //       console.log(newQueue.issues);
-  //     }}}}
-  //   })
+  $('button.refresh').click(function() {
+    newQueue.refresh();
+  });
+  
 });
