@@ -1,0 +1,6 @@
+file:///Users/brad/code/gamified-queue/index.html
+http://stackoverflow.com/questions/13702100/localstorage-array-of-objects-handling
+https://weblog.west-wind.com/posts/2014/Jan/06/JavaScript-JSON-Date-Parsing-and-real-Dates#DecodingtheDate
+http://stackoverflow.com/questions/3357553/how-to-store-an-array-in-localstorage
+https://github.com/pizzimenti/gamified-queue/blob/local.storage/js/scripts.js
+chrome://settings/syncSetup
