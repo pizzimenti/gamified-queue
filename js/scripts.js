@@ -22,19 +22,16 @@ Queue.prototype.refresh = function() {
     return a.timestamp - b.timestamp;
   }
 };
-
-var dbQueue = []
-
+  
 var DrawQueue = function() {
-
+  var dbQueue = [];
   $('#queue-output').empty();
 
-  for (index=0; index < localStorage.length; index++) {
+  for (var index=0; index < localStorage.length; index++) {
     dbQueue.push(JSON.parse(localStorage.getItem('queueStorage'+index)));
   }
 
   dbQueue.forEach(function(issue) {
-
     $('#queue-output').append(
       '<tr>'+
         '<td>'+
