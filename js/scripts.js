@@ -8,8 +8,13 @@ function Issue(name, location, language, description, snippet, timestamp) {
   this.resolved = false;
 };
 
+Issue.prototype.resolve = function() {
+  this.resolved = true;
+}
+
 function Queue() {
   this.issues = [];
+  this.resolved = [];
 };
 
 Queue.prototype.addIssue = function(issue) {
@@ -22,6 +27,21 @@ Queue.prototype.refresh = function() {
     return a.timestamp - b.timestamp;
   }
 };
+
+Queue.prototype.resolveIssue = function(name) {
+  var issues = this.issues;
+  var resolved = this.resolved;
+  for (var i = 0; i < issues.length; i++) {
+     if (issues[i].name === name) {
+      issues[i].resolved === true;
+      var index = issues.indexOf(issues[i])
+      var resolvedIssue = issues.slice(index, index+1);
+      issues.splice(index, 1 );
+      resolved.push(resolvedIssue[0]);
+      console.log(resolved);
+     }
+  }
+}
 
 var DrawQueue = function() {
   var dbQueue = [];
