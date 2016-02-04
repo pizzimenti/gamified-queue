@@ -8,6 +8,10 @@ function Issue(name, location, language, description, snippet, timestamp) {
   this.resolved = false;
 };
 
+Issue.prototype.resolve = function() {
+  this.resolved = true;
+}
+
 function Queue() {
   this.issues = [];
 };
@@ -132,7 +136,7 @@ $(document).ready(function(){
 
   $('button.purge').click(function() {
     localStorage.clear();
-    DrawQueue();
+    DrawQueue();   
   });
 
 });  //end of Document Ready function
