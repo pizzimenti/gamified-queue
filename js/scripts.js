@@ -42,7 +42,7 @@ Queue.prototype.resolveIssue = function(name) {
      }
   }
 }
-  
+
 var DrawQueue = function() {
   var dbQueue = [];
   $('#queue-output').empty();
@@ -152,7 +152,8 @@ $(document).ready(function(){
 
   $('button.purge').click(function() {
     localStorage.clear();
-    DrawQueue();   
+    DrawQueue();
+    location.href="index.html";
   });
 
 });  //end of Document Ready function
