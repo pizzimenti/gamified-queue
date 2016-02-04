@@ -74,7 +74,7 @@ $(document).ready(function(){
                   '<div class="modal-body">'+
                     '<p>Location:<span class="modal-data">'+issue.location+'</span></p>'+
                     '<p>Language:<span class="modal-data">'+issue.language+'</span></p>'+
-                    '<p>Description:<span class="modal-data" "descption">'+issue.desc+'</span></p>'+
+                    '<p>Description:<span class="modal-data desc">'+issue.description+'</span></p>'+
                     '<p>Code Snippet:<span class="modal-data"><xmp>'+issue.snippet+'</xmp></span></p>'+
                   '</div>'+
                   '<div class="modal-footer">'+
@@ -87,7 +87,6 @@ $(document).ready(function(){
             '</div>'+
           '</td>'+
           '<td>'+
-var test="";
 
             '<div data-toggle="modal" data-target="#myModal'+newQueue.issues.indexOf(issue) + '">'
               +issue.location+
@@ -124,5 +123,5 @@ var test="";
   $('button.refresh').click(function() {
     newQueue.refresh();
   });
-  
+
 });
