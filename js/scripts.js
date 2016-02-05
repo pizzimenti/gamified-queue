@@ -46,7 +46,6 @@ Queue.prototype.resolveIssue = function(name) {
 var DrawQueue = function() {
   var dbQueue = [];
   $('#queue-output').empty();
-
   for (var index=0; index < localStorage.length; index++) {
     dbQueue.push(JSON.parse(localStorage.getItem('queueStorage'+index)));
   }
@@ -141,10 +140,20 @@ $(document).ready(function(){
     var currentTime;
     var waitTime;
 
+    for(i = 0; i < newQueue.issues.length; i ++) {
+      localStorage.setItem('queueStorage' + localStorage.length, JSON.stringify(newQueue.issues[i]));
+    }
 
-  newQueue.issues.forEach(function(issue) {
-    localStorage.setItem('queueStorage' + newQueue.issues.indexOf(issue), JSON.stringify(issue));
-  });
+    newQueue.issues = [];
+
+    // newQueue.issues.forEach(function(issue) {
+    //   console.log(newQueue);
+    //   console.log(localStorage.length);
+    // });
+
+  // newQueue.issues.forEach(function(issue) {
+  //   localStorage.setItem('queueStorage' + newQueue.issues.indexOf(issue), JSON.stringify(issue));
+  // });
 
   DrawQueue();
 
