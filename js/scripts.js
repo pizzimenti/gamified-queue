@@ -5,6 +5,8 @@ function Issue(name, location, language, description, snippet, timestamp) {
   this.description = description;
   this.snippet = snippet;
   this.timestamp = timestamp;
+  this.status = "";
+  this.peerHelper = "";
   this.resolved = false;
 };
 
@@ -21,12 +23,6 @@ Queue.prototype.addIssue = function(issue) {
   this.issues.push(issue);
 };
 
-Queue.prototype.refresh = function() {
-  this.issues.sort(compareTimestamps);
-  function compareTimestamps(a, b) {
-    return a.timestamp - b.timestamp;
-  }
-};
 
 Queue.prototype.resolveIssue = function(name) {
   var issues = this.issues;
@@ -56,7 +52,7 @@ var DrawQueue = function() {
 
   dbQueue.forEach(function(issue) {
     $('#queue-output').append(
-      '<tr>'+
+      '<tr id="table'+dbQueue.indexOf(issue)+'">'+
         '<td>'+
           '<div data-toggle="modal" data-target="#myModal'+dbQueue.indexOf(issue) + '">'
             +issue.name+
@@ -77,7 +73,7 @@ var DrawQueue = function() {
                 '<div class="modal-footer">'+
                   '<button type="button" class="btn btn-md btn-primary"'+
                   'data-dismiss="modal">Close</button>'+
-                  '<button type="button" class="btn btn-md btn-danger help">I can help!</button>'+
+                    '<button type="button" id="help'+ dbQueue.indexOf(issue)+'" class="btn btn-md btn-danger help">I can help!</button>'+
                 '</div>'+
               '</div>'+
             '</div>'+
@@ -100,6 +96,10 @@ var DrawQueue = function() {
       '</tr>');
     });
 
+  dbQueue.sort(compareTimestamps);
+  function compareTimestamps(a, b) {
+    return a.timestamp - b.timestamp;
+  }
 
   var interval = setInterval(function() { timer() }, 100);
   function timer() {
@@ -115,9 +115,31 @@ var DrawQueue = function() {
       });
     });
   }
+
+  dbQueue.forEach(function(issue){
+    if (issue.status === "peer-help"){
+        $("#table"+ dbQueue.indexOf(issue)).css('background-color', '#98b889');
+      }
+    });
+
+
+  dbQueue.forEach(function(issue){
+    $("#help"+ dbQueue.indexOf(issue)).click(function(){
+      issue.status = "peer-help";
+      var peerHelper = prompt("Your name?");
+      issue.peerHelper = peerHelper;
+      dbQueue.forEach(function(issue) {
+        localStorage.setItem('queueStorage' + dbQueue.indexOf(issue), JSON.stringify(issue));
+      });
+      $("#table"+ dbQueue.indexOf(issue)).css('background-color', '#98b889');
+
+    });
+  });
+
 }  //end of DrawQueue function
 
 $(document).ready(function(){
+
 
   var newQueue = new Queue();
 
@@ -140,28 +162,15 @@ $(document).ready(function(){
     var currentTime;
     var waitTime;
 
-    for(i = 0; i < newQueue.issues.length; i ++) {
-      localStorage.setItem('queueStorage' + localStorage.length, JSON.stringify(newQueue.issues[i]));
-    }
+    newQueue.issues.forEach(function(issue) {
+      localStorage.setItem('queueStorage' + localStorage.length, JSON.stringify(issue));
+    });
 
     newQueue.issues = [];
 
-    // newQueue.issues.forEach(function(issue) {
-    //   console.log(newQueue);
-    //   console.log(localStorage.length);
-    // });
-
-  // newQueue.issues.forEach(function(issue) {
-  //   localStorage.setItem('queueStorage' + newQueue.issues.indexOf(issue), JSON.stringify(issue));
-  // });
-
-  DrawQueue();
+    DrawQueue();
 
   }); //end of Submit function
-
-  $('button.refresh').click(function() {
-    newQueue.refresh();
-  });
 
   $('button.purge').click(function() {
     localStorage.clear();
