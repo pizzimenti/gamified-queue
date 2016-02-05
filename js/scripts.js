@@ -118,7 +118,7 @@ var DrawQueue = function() {
 
   dbQueue.forEach(function(issue){
     if (issue.status === "peer-help"){
-        $("#table"+ dbQueue.indexOf(issue)).css('background-color', '#98b889');
+        $("#table"+ dbQueue.indexOf(issue)).toggleClass("peer-status");
       }
     });
 
